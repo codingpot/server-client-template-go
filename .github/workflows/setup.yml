@@ -39,12 +39,12 @@ jobs:
         server_path = Path('cmd/server/main.go')
         client_path = Path('cmd/client/main.go')        
         
-        readme = readme_path.read_text().replace('server-client-go', repo_name)
-        serv = serv_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
-        msg = msg_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
-        svc = svc_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
-        server = server_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs').replace('github.com/codingpot/server-client-template-go/pkg/serv', 'github.com/' + username + '/' + repo_name + '/pkg/serv')
-        client = client_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
+        readme = readme_path.read_text().replace('server-client-go', repo_name).replace('codingpot/server-client-template-go', username + '/' + repo_name)
+        serv = serv_path.read_text().replace('codingpot/server-client-template-go', username + '/' + repo_name)
+        msg = msg_path.read_text().replace('codingpot/server-client-template-go', username + '/' + repo_name)
+        svc = svc_path.read_text().replace('codingpot/server-client-template-go', username + '/' + repo_name)
+        server = server_path.read_text().replace('codingpot/server-client-template-go', username + '/' + repo_name)
+        client = client_path.read_text().replace('codingpot/server-client-template-go', username + '/' + repo_name)
         
         readme_path.write_text(readme)
         serv_path.write_text(serv)

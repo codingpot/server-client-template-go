@@ -20,7 +20,6 @@ jobs:
         readme_path = Path('README.md')
         readme = readme_path.read_text().replace('server-client-go', repo_name)
         readme_path.write_text(readme)        
-
       shell: python
       
     - name: commit changes
@@ -28,11 +27,10 @@ jobs:
         git config --global user.email "${GH_EMAIL}"
         git config --global user.name "${GH_USERNAME}"
         git checkout -B automated-setup
-        git rm .github/workflows/setup.yaml
+        git rm ./.github/workflows/setup.yaml
         git add README.md
         git commit -m'setup repo'
         git push -f --set-upstream origin automated-setup
-        
       env: 
         GH_EMAIL: ${{ github.event.commits[0].author.email }}
         GH_USERNAME: ${{ github.event.commits[0].author.username }}

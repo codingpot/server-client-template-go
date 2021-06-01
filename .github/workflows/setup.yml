@@ -39,7 +39,7 @@ jobs:
         server_path = Path('cmd/server/main.go')
         client_path = Path('cmd/client/main.go')        
         
-        readme = readme_path.read_text().replace('server-client-go', repo_name).replace('codingpot/server-client-template-go', username + '/' + repo_name)
+        readme = readme_path.read_text().replace('codingpot/server-client-template-go', username + '/' + repo_name)
         serv = serv_path.read_text().replace('codingpot/server-client-template-go', username + '/' + repo_name)
         msg = msg_path.read_text().replace('codingpot/server-client-template-go', username + '/' + repo_name)
         svc = svc_path.read_text().replace('codingpot/server-client-template-go', username + '/' + repo_name)

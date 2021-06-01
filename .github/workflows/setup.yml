@@ -34,7 +34,7 @@ jobs:
         git config --global user.name "${GH_USERNAME}"
         git checkout -B automated-setup
         git rm .github/workflows/setup.yml
-        git add README.md .github/workflows/setup.yaml
+        git add README.md
         git commit -m'setup repo'
         git push -f --set-upstream origin automated-setup
       env: 

@@ -1,0 +1,14 @@
+syntax="proto3";
+package pkg.pbs;
+
+option go_package = "github.com/codingpot/server-client-template-go/pkg/pbs";
+
+import "pkg/pbs/messages.proto";
+// please modify the messages, services below
+message HelloRequest { string body = 1; }
+
+message HelloResponse { string body = 1; }
+
+service DummyService {
+  rpc GetHello(HelloRequest) returns (HelloResponse) {};
+}

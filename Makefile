@@ -21,7 +21,7 @@ ifeq ($(UNAME), Linux)
 endif
 endif
 ifeq ($(PROTOC_GEN_GO),)
-	go mod download && grep _ ./cmd/tools/tools.go | cut -d' ' -f2 | xargs go install -v
+	go mod download && grep _ ./cmd/tools/tools.go | cut -d' ' -f2 | sed 's/\r//' | xargs go install -v
 endif
 
 all:

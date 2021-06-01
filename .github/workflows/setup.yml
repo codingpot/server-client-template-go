@@ -24,10 +24,35 @@ jobs:
         username, repo_name = nwo.split('/')
         
         readme_path = Path('README.md')
+        serv_path = Path('pkg/serv/serv.go')
+        msg_path = Path('pkg/pbs/messages.proto')
+        svc_path = Path('pkg/pbs/services.proto')
+        server_path = Path('cmd/client/main.go')
+        client_path = Path('cmd/server/main.go')        
+        
         readme = readme_path.read_text().replace('server-client-go', repo_name)
+        serv = serv_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
+        msg = msg_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
+        svc = svc_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
+        server = server_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
+        client = client_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
+        
         readme_path.write_text(readme)
+        serv_path.write_text(serv)
+        msg_path.write_text(msg)
+        svc_path.write_text(svc)
+        server_path.write_text(server)
+        client_path.write_text(client)
       shell: python
-      
+
+    - name: go tidy
+      run: | 
+        echo $GITHUB_REPOSITORY
+        username="$(cut -d'/' -f1 <<<$GITHUB_REPOSITORY)"
+        repo_name="$(cut -d'/' -f2 <<<$GITHUB_REPOSITORY)"
+        echo '$username, $repo_name'
+        
+
     - name: commit changes
       run: |
         git config --global user.email "${GH_EMAIL}"

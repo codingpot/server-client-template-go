@@ -1,0 +1,28 @@
+name: Setup
+on: push
+
+jobs:
+  setup:
+    if: (github.event.commits[0].message == 'Initial commit') && (github.run_number == 1)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copy Repository Contents
+      uses: actions/checkout@v2
+    - name: modify files
+      run: |
+        #...
+    - name: commit changes
+      run: |
+       # ...
+      env: 
+        GH_EMAIL: ${{ github.event.commits[0].author.email }}
+        GH_USERNAME: ${{ github.event.commits[0].author.username }}
+
+    - name: Open a PR
+      uses: actions/github-script@0.5.0
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          # ...
+
+# reference: https://github.com/fastai/fastpages/blob/bf5669e698d1e3827dd919d2662d3f5ae565d1cc/.github/workflows/setup.yaml

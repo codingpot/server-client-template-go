@@ -49,13 +49,18 @@ jobs:
         client_path.write_text(client)
       shell: python
 
-    - name: go tidy 
+    - name: get unsername and reponame
+      run: | 
+          export username="$(cut -d'/' -f1 <<<$GITHUB_REPOSITORY)"
+          export repo_name="$(cut -d'/' -f2 <<<$GITHUB_REPOSITORY)"
+          echo "::set-env name=username::$username"
+          echo "::set-env name=repo_name::$repo_name"
+
+    - name: go mod && tidy
       uses: actions/setup-go@v2
       with:
         go-version: "1.16"   
         run: | 
-          username="$(cut -d'/' -f1 <<<$GITHUB_REPOSITORY)"
-          repo_name="$(cut -d'/' -f2 <<<$GITHUB_REPOSITORY)"
           go mod init github.com/$username/$repo_name
           go tidy
           

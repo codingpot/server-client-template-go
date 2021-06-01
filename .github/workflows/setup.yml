@@ -53,6 +53,6 @@ jobs:
                         repo: context.repo.repo,
                         title: 'Initial Setup',
                         head: 'automated-setup',
-                        base: 'master',
+                        base: 'main',
                         body: `${contents}`
                         });

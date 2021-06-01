@@ -6,8 +6,14 @@ jobs:
     if: (github.event.commits[0].message == 'Initial commit') && (github.run_number == 1)
     runs-on: ubuntu-latest
     steps:
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.6
+        
     - name: Copy Repository Contents
       uses: actions/checkout@v2
+      
     - name: modify files
       run: |
         import re, os
@@ -27,7 +33,7 @@ jobs:
         git config --global user.email "${GH_EMAIL}"
         git config --global user.name "${GH_USERNAME}"
         git checkout -B automated-setup
-        git rm ./.github/workflows/setup.yaml
+        git rm .github/workflows/setup.yaml
         git add README.md
         git commit -m'setup repo'
         git push -f --set-upstream origin automated-setup

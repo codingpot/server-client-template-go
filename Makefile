@@ -21,7 +21,7 @@ ifeq ($(UNAME), Linux)
 endif
 endif
 #ifeq ($(PROTOC_GEN_GO),)
-	(cd server && go mod download && grep _ ./cmd/tools.go | cut -d' ' -f2 | xargs go install)
+	(go mod download && grep _ ./cmd/tools.go | cut -d' ' -f2 | xargs go install)
 #endif
 	
 all:

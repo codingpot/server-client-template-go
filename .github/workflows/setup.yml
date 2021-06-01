@@ -36,8 +36,8 @@ jobs:
         serv_path = Path('pkg/serv/serv.go')
         msg_path = Path('pkg/pbs/messages.proto')
         svc_path = Path('pkg/pbs/services.proto')
-        server_path = Path('cmd/client/main.go')
-        client_path = Path('cmd/server/main.go')        
+        server_path = Path('cmd/server/main.go')
+        client_path = Path('cmd/client/main.go')        
         
         readme = readme_path.read_text().replace('server-client-go', repo_name)
         serv = serv_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')

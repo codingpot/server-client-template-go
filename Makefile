@@ -20,11 +20,10 @@ ifeq ($(UNAME), Linux)
 	export PATH="$${PATH}:$${HOME}/.local/bin"
 endif
 endif
-#ifeq ($(PROTOC_GEN_GO),)
-#	(go mod download && grep _ ./cmd/tools.go | cut -d' ' -f2 | xargs go install)
-	(go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest && go install google.golang.org/protobuf/cmd/protoc-gen-go@latest)
-#endif
-	
+ifeq ($(PROTOC_GEN_GO),)
+	go mod download && grep _ ./cmd/tools/tools.go | cut -d' ' -f2 | xargs go install -v
+endif
+
 all:
 	mkdir -p ./pkg/pbs/
 	protoc \
@@ -34,6 +33,6 @@ all:
     --go-grpc_out=. \
     --go-grpc_opt=paths=source_relative \
     $(PROTO_FILES)
-    
+
 clean:
-	rm -rf ./pkg/pbs/*.pb.go    
+	rm -rf ./pkg/pbs/*.pb.go

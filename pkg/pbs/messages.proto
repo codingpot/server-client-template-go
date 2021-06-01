@@ -1,0 +1,5 @@
+syntax="proto3";
+package pkg.pbs;
+
+option go_package = "github.com/codingpot/server-client-template-go/pkg/pbs";
+

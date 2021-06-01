@@ -10,10 +10,29 @@ jobs:
       uses: actions/checkout@v2
     - name: modify files
       run: |
-        #...
+        import re, os
+        from pathlib import Path
+        from configparser import ConfigParser
+
+        nwo = os.getenv('GITHUB_REPOSITORY')
+        username, repo_name = nwo.split('/')
+        
+        readme_path = Path('README.md')
+        readme = readme_path.read_text().replace('server-client-go', repo_name)
+        readme_path.write_text(readme)        
+
+      shell: python
+      
     - name: commit changes
       run: |
-       # ...
+        git config --global user.email "${GH_EMAIL}"
+        git config --global user.name "${GH_USERNAME}"
+        git checkout -B automated-setup
+        git rm .github/workflows/setup.yaml
+        git add README.md
+        git commit -m'setup repo'
+        git push -f --set-upstream origin automated-setup
+        
       env: 
         GH_EMAIL: ${{ github.event.commits[0].author.email }}
         GH_USERNAME: ${{ github.event.commits[0].author.username }}
@@ -23,6 +42,14 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          # ...
-
+          var fs = require('fs');
+          var contents = "your initial PR";
+          github.pulls.create({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        title: 'Initial Setup',
+                        head: 'automated-setup',
+                        base: 'master',
+                        body: `${contents}`
+                        })
 # reference: https://github.com/fastai/fastpages/blob/bf5669e698d1e3827dd919d2662d3f5ae565d1cc/.github/workflows/setup.yaml

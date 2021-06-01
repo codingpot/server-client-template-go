@@ -69,7 +69,7 @@ jobs:
       run: | 
         echo github.com/$username/$repo_name
         go mod init github.com/$username/$repo_name
-        go tidy
+        go mod tidy
           
     - name: protoc
       run: |

@@ -67,8 +67,8 @@ jobs:
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'      
       run: | 
-        echo 
-        go mod init github.com/$username/$repo_namegithub.com/$username/$repo_name
+        echo github.com/$username/$repo_name
+        go mod init github.com/$username/$repo_name
         go tidy
           
     - name: protoc

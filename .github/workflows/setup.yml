@@ -70,6 +70,7 @@ jobs:
         git config --global user.name "${GH_USERNAME}"
         git checkout -B automated-setup
         git rm .github/workflows/setup.yml
+        git add go.mod go.sum
         git add .
         git commit -m'setup repo'
         git push -f --set-upstream origin automated-setup

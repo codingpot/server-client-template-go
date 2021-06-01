@@ -43,7 +43,7 @@ jobs:
         serv = serv_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
         msg = msg_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
         svc = svc_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
-        server = server_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
+        server = server_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs').replace('github.com/codingpot/server-client-template-go/pkg/serv', 'github.com/' + username + '/' + repo_name + '/pkg/serv')
         client = client_path.read_text().replace('github.com/codingpot/server-client-template-go/pkg/pbs', 'github.com/' + username + '/' + repo_name + '/pkg/pbs')
         
         readme_path.write_text(readme)

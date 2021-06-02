@@ -1,4 +1,4 @@
-[![CI](https://github.com/codingpot/server-client-template-go/actions/workflows/ci.yml/badge.svg)](https://github.com/codingpot/server-client-template-go/actions/workflows/ci.yml)
+[![CI](https://github.com/codingpot/server-client-template-go/actions/workflows/ci.yml/badge.svg)](https://github.com/codingpot/server-client-template-go/actions/workflows/ci.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/codingpot/server-client-template-go)](https://goreportcard.com/report/github.com/codingpot/server-client-template-go)
 
 # Server & Client Template in Golang (gRPC/protobuf)
 

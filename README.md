@@ -2,7 +2,7 @@
 
 # Server & Client Template in Golang (gRPC/protobuf)
 
-This repository provides server & client boilerplate codes written in golang. The server & client communicated via gRPC/protobuf interface. It's boring to fork the repo and replace all the placeholders to fit your own environment. Instead, this repository give an easy way to **"copy"**. 
+This repository provides server & client boilerplate codes written in golang. The server & client communicated via gRPC/protobuf interface. It's boring to fork the repo and replace all the placeholders to fit your own environment. Instead, this repository give an easy way to **"copy"**.
 
 # Initial Setup
 
@@ -11,10 +11,14 @@ This repository provides server & client boilerplate codes written in golang. Th
 3. When the repository is copied over to your place, a `setup` GitHub Action gets triggered. It essentially leaves a `PR` when it is done.
 4. Merge the `PR` named `Initial Setup`.
 5. When the `PR` is done merged, it triggers another `ci` GitHub Action. Wait until it ends.
+6. Run `make install`. You can also specify PROTOC_VERSION if needed like this:
+   ```shell
+   PROTOC_VERSION=3.17.0 make install
+   ```
 
 # What can you do with initial setup?
 
-You can simply ping from a client to server with a dummy message via `DummyService`. 
+You can simply ping from a client to server with a dummy message via `DummyService`.
 
 # What should you do after initial setup?
 
@@ -30,17 +34,17 @@ You can simply ping from a client to server with a dummy message via `DummyServi
 |
 |-- cmd
 |   |-- client -- (D)(1)
-|   |   
+|   |
 |   |-- server -- (D)(2)
-|   |   
+|   |
 |   `-- tools  -- (D)(3)
-|    
-|   
+|
+|
 |-- internal   -- (D)(4)
-|   
+|
 |-- model      -- (D)(5)
-|   
-|-- pkg        
+|
+|-- pkg
 |   |-- pbs    -- (D)(6)
 |   |
 |   `-- serv   -- (D)(7)
@@ -48,7 +52,7 @@ You can simply ping from a client to server with a dummy message via `DummyServi
 `-- Makefile   -- (F)(8)
 ```
 
-*(D) indicates `Directory`, and (F) indicated `File`*
+_(D) indicates `Directory`, and (F) indicated `File`_
 
 0. Any GitHub Action should go into `.github`. Basic CI workflow is provided. It simply builds `cmd/client/main.go` and `cmd/server/main.go` to check if there is any errors.
 
@@ -64,7 +68,6 @@ You can simply ping from a client to server with a dummy message via `DummyServi
 
 6. `pkg/pbs` contains protocol buffer related stuff. Usually files with the extensions of `*.proto`, `*.pb.go` should be stored in here.
 
-7. `pkg/serv` is there to handle incoming messages from client to server. 
+7. `pkg/serv` is there to handle incoming messages from client to server.
 
 8. `Makefile` mainly provides two rules, installing gRPC/protobuf environment via `make install` and generating protobuf into the appropriate folder `pkg/pbs` via `make all`.
-

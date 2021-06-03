@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := all
 
-PROTOC_VERSION := 3.17.2
+PROTOC_VERSION ?= 3.17.2
 PROTOC_RELEASE := https://github.com/protocolbuffers/protobuf/releases
 PROTO_FILES := $(shell find . -name "*.proto" -type f)
 UNAME := $(shell uname)
